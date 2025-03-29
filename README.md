@@ -3,7 +3,13 @@
 # 🕸️ ToS-Crawl — Terms of Service Crawler
 
 
-**ToS-Crawl** is a stealth-enabled crawler that extracts and recursively collects **Terms of Service (ToS)**, **Privacy Policies**, and other legal agreements from major websites. It is designed for **academic research**, **NLP dataset creation**, and **comparative policy analysis**.
+**ToS-Crawl** is a stealth-enabled crawler that extracts and recursively collects **Terms of Service (ToS)**, **Privacy Policies**, and other legal agreements from major websites. It is designed for **academic research**, **NLP dataset creation**, and **comparative policy analysis**. 
+
+ToS-Crawl is part of the following research paper:
+
+> **"ToSense: We Read, You Click"**\
+> *Xinzhang Chen, Hassan Ali, Arash Shaghaghi, Salil S. Kanhere*\
+> *Under review at IEEE/IFIP DSN 2025*
 
 ---
 
