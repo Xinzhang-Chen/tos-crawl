@@ -157,7 +157,7 @@ See the [LICENSE](../LICENSE) file for more information.
 
 - Xinzhang Chen - xinzhang.chen@unsw.edu.au
 - Hassan Ali - hassan.ali@unsw.edu.au
-- Arash Shaghaghi - a.shaghaghi@unsw.edu.au
+- Dr Arash Shaghaghi - a.shaghaghi@unsw.edu.au
 
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
