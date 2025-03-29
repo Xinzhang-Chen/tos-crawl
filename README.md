@@ -1,4 +1,4 @@
-<img width="1368" alt="TOS-Crawl Banner" src="https://github.com/user-attachments/assets/3a5f56dd-d733-420e-9706-a9226b08f5ef" />
+<img width="1368" alt="TOS-Crawl Banner" src="https://github.com/user-attachments/assets/a4873d25-305e-4326-bdb3-505514493f55" />
 
 # 🕸️ ToS-Crawl — Terms of Service Crawler
 
