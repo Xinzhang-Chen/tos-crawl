@@ -1,0 +1,45 @@
+{
+  "name": "tos-crawl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tos-crawl.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xinzhang-Chen/tos-crawl.git"
+  },
+  "keywords": [
+    "tos",
+    "terms",
+    "of",
+    "service",
+    "crawler",
+    "web",
+    "scraping",
+    "legal",
+    "documents",
+    "tos",
+    "parser",
+    "tos",
+    "analysis",
+    "nodejs",
+    "data",
+    "extraction"
+  ],
+  "author": "Xinzhang Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xinzhang-Chen/tos-crawl/issues"
+  },
+  "homepage": "https://github.com/Xinzhang-Chen/tos-crawl#readme",
+  "dependencies": {
+    "@mozilla/readability": "^0.6.0",
+    "jsdom": "^26.0.0",
+    "puppeteer": "^24.4.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "turndown": "^7.2.0"
+  }
+}
