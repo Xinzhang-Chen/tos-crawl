@@ -70,15 +70,10 @@ Use the following well-known platform links to test the crawler:
 | Platform    | Terms of Service URL |
 |-------------|----------------------|
 | Facebook    | https://www.facebook.com/terms.php |
-| Twitter     | https://twitter.com/en/tos |
-| Instagram   | https://help.instagram.com/581066165581870 |
 | YouTube     | https://www.youtube.com/t/terms |
 | TikTok      | https://www.tiktok.com/legal/page/row/terms-of-service/en |
-| Reddit      | https://www.redditinc.com/policies/user-agreement |
 | LinkedIn    | https://www.linkedin.com/legal/l/service-terms |
 | Google      | https://policies.google.com/terms |
-| GitHub      | https://docs.github.com/en/site-policy/github-terms/github-terms-of-service |
-| Amazon      | https://www.amazon.com/gp/help/customer/display.html?nodeId=201909000 |
 
 > You can copy any of the above into `--url` to test the crawler on that site.
 
