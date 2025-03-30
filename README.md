@@ -8,7 +8,7 @@
 ToS-Crawl is part of the following research paper:
 
 > **"ToSense: We Read, You Click"**\
-> *Xinzhang Chen, Hassan Ali, Arash Shaghaghi, Salil S. Kanhere*\
+> *Xinzhang Chen, Hassan Ali, Arash Shaghaghi, Salil S. Kanhere, Sanjay Jha*\
 > *Under review at IEEE/IFIP DSN 2025*
 
 ---
