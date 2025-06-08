@@ -36,7 +36,6 @@
   "homepage": "https://github.com/Xinzhang-Chen/tos-crawl#readme",
   "dependencies": {
     "@mozilla/readability": "^0.6.0",
-    "franc": "^6.2.0",
     "jsdom": "^26.0.0",
     "puppeteer": "^24.4.0",
     "puppeteer-extra": "^3.3.6",
