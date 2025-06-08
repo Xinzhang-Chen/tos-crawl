@@ -1,0 +1,112 @@
+2025-06-08T01:01:39.575Z - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service - TypeError: page.waitForTimeout is not a function
+    at autoScroll (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:162:14)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:70:5)
+    at async /Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:231:19
+2025-06-08T01:02:37.965Z - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service - TypeError: page.waitFor is not a function
+    at autoScroll (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:162:14)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:70:5)
+    at async /Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:231:19
+2025-06-08T01:20:18.593Z - https://docs.github.com/es/site-policy/acceptable-use-policies/github-appeal-and-reinstatement - TimeoutError: Navigation timeout of 45000 ms exceeded
+    at new Deferred (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/util/Deferred.js:60:34)
+    at Deferred.create (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/util/Deferred.js:21:16)
+    at new LifecycleWatcher (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/LifecycleWatcher.js:69:60)
+    at CdpFrame.goto (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Frame.js:148:29)
+    at CdpFrame.<anonymous> (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/util/decorators.js:109:27)
+    at CdpPage.goto (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/api/Page.js:574:43)
+    at extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:53:33)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:91:25)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:91:25)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:91:25)
+2025-06-08T01:37:00.406Z - mailto:legal-support@github.com - Error: net::ERR_ABORTED at mailto:legal-support@github.com
+    at navigate (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Frame.js:183:27)
+    at async Deferred.race (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/util/Deferred.js:36:20)
+    at async CdpFrame.goto (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Frame.js:149:25)
+    at async CdpPage.goto (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/api/Page.js:574:20)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:56:22)
+    at async Promise.all (index 2)
+    at async concurrentExtract (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:108:22)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:86:28)
+    at async Promise.all (index 4)
+    at async concurrentExtract (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:108:22)
+2025-06-08T01:37:50.748Z - mailto:legal@npmjs.com - Error: net::ERR_ABORTED at mailto:legal@npmjs.com
+    at navigate (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Frame.js:183:27)
+    at async Deferred.race (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/util/Deferred.js:36:20)
+    at async CdpFrame.goto (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Frame.js:149:25)
+    at async CdpPage.goto (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/api/Page.js:574:20)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:56:22)
+    at async Promise.all (index 0)
+    at async concurrentExtract (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:108:22)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:86:28)
+    at async Promise.all (index 0)
+    at async concurrentExtract (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:108:22)
+2025-06-08T02:51:57.279Z - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service?search-overlay-open=true - Error: Protocol error: Connection closed.
+    at Connection._rawSend (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:97:35)
+    at Connection.send (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:90:21)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:179:53)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-extra/dist/index.cjs.js:210:51)
+    at CdpBrowserContext.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/BrowserContext.js:123:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CdpBrowser.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:176:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:59:18)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:115:25)
+    at async /Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:283:21
+2025-06-08T02:51:57.280Z - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service - ReferenceError: page is not defined
+    at extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:125:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:115:25)
+    at async /Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:283:21
+2025-06-08T02:53:05.803Z - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service - Error: Protocol error: Connection closed.
+    at Connection._rawSend (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:97:35)
+    at Connection.send (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:90:21)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:179:53)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-extra/dist/index.cjs.js:210:51)
+    at CdpBrowserContext.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/BrowserContext.js:123:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CdpBrowser.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:176:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:57:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:115:25)
+    at async /Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:283:21
+2025-06-08T02:54:05.070Z - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service - Error: Protocol error: Connection closed.
+    at Connection._rawSend (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:97:35)
+    at Connection.send (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:90:21)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:179:53)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-extra/dist/index.cjs.js:210:51)
+    at CdpBrowserContext.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/BrowserContext.js:123:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CdpBrowser.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:176:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:57:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:115:25)
+    at async /Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:282:21
+2025-06-08T02:55:11.211Z - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service - Error: Protocol error: Connection closed.
+    at Connection._rawSend (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:97:35)
+    at Connection.send (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:90:21)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:179:53)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-extra/dist/index.cjs.js:210:51)
+    at CdpBrowserContext.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/BrowserContext.js:123:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CdpBrowser.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:176:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:57:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:115:25)
+    at async /Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:282:21
+2025-06-08T03:14:46.069Z - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service - Error: Protocol error: Connection closed.
+    at Connection._rawSend (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:97:35)
+    at Connection.send (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:90:21)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:179:53)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-extra/dist/index.cjs.js:210:51)
+    at CdpBrowserContext.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/BrowserContext.js:123:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CdpBrowser.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:176:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:58:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:116:25)
+    at async /Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:282:21
+2025-06-08T04:00:39.897Z - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service - Error: Protocol error: Connection closed.
+    at Connection._rawSend (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:97:35)
+    at Connection.send (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:90:21)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:179:53)
+    at CdpBrowser._createPageInContext (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-extra/dist/index.cjs.js:210:51)
+    at CdpBrowserContext.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/BrowserContext.js:123:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CdpBrowser.newPage (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Browser.js:176:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:64:16)
+    at async extractTOS (/Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:137:25)
+    at async /Users/xinzhang/Desktop/UNSW/Mphil/tos-crawl/improved_tos-crawl.js:312:21

@@ -15,7 +15,6 @@ puppeteer.use(StealthPlugin());
 // ===================== CONFIGURATION =====================
 const DEFAULT_URL = 'https://www.linkedin.com/legal/l/service-terms';
 const DEFAULT_OUTPUT = './output/Linkedin.md';
-const TOS_KEYWORDS = [/terms/i, /service/i, /legal/i, /policy/i, /user-agreement/i];
 const MAX_DEPTH = 3;
 const LANGUAGE = 'en-US';
 const visitedLinks = new Set();
@@ -29,37 +28,64 @@ let stats = {
 };
 
 // ===================== MAIN FUNCTION =====================
-async function extractTOS(url, depth = 0) {
+async function extractTOS(url, depth = 0, browser = null) {
+  if (!browser) {
+    browser = await puppeteer.launch({
+      headless: 'chrome',
+      args: [
+        '--lang=en-US',
+        '--no-sandbox',
+        '--disable-gpu',
+        '--disable-dev-shm-usage',
+        '--disable-setuid-sandbox',
+        '--single-process',
+      ],
+    });
+  }
   const normalizedUrl = url.split('#')[0];
   if (depth > MAX_DEPTH || visitedLinks.has(normalizedUrl)) return '';
-  if (normalizedUrl.match(/\.(pdf|docx?|pptx?|xls|zip)(\?|$)/i)) {
-    console.log(`⏭️ Skipping non-HTML file: ${normalizedUrl}`);
+
+  // Check if the URL is a download page
+  if (isDownloadPage(normalizedUrl)) {
+    console.log(`⏭️ Skipping download page: ${normalizedUrl}`);
     stats.skipped++;
+    visitedLinks.add(normalizedUrl);
     return '';
   }
 
   visitedLinks.add(normalizedUrl);
   stats.totalVisited++;
   console.log(`🔍 Visiting: ${normalizedUrl}`);
+  const page = await browser.newPage();
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: [`--lang=${LANGUAGE}`, '--no-sandbox', '--disable-features=TranslateUI'],
-  });
+  const client = await page.target().createCDPSession();
+  await client.send('Page.setDownloadBehavior', { behavior: 'deny' });
 
   try {
-    const page = await browser.newPage();
-    await page.setExtraHTTPHeaders({ 'Accept-Language': `${LANGUAGE},en;q=0.9` });
+    await page.setRequestInterception(true);
+    page.on('request', (req) => {
+      const url = req.url();
+      const type = req.resourceType();
 
-    const response = await page.goto(normalizedUrl, {
-      waitUntil: 'networkidle2',
-      timeout: 30000,
+      const isDownloadLike =
+        /\.(pdf|docx?|pptx?|xls|zip|rar|gz|tar|7z)(\?|$)/i.test(url) ||
+        /download=|\.aspx|\.ashx|\.do\?|attachment=true/i.test(url);
+
+      const blockedTypes = ['image', 'stylesheet', 'font', 'media'];
+
+      if (blockedTypes.includes(type) || isDownloadLike) {
+        req.abort();
+      } else {
+        req.continue();
+      }
     });
 
-    const status = response?.status();
-    if (!status || status >= 400 || [301, 302, 401, 403].includes(status)) {
-      console.log(`⏭️ Skipped restricted page (HTTP ${status}): ${normalizedUrl}`);
-      await browser.close();
+    await page.setExtraHTTPHeaders({ 'Accept-Language': `${LANGUAGE},en;q=0.9` });
+
+    const response = await page.goto(normalizedUrl, { waitUntil: 'networkidle2', timeout: 45000 });
+
+    if (!response || !response.ok() || [301, 302, 401, 403].includes(response.status())) {
+      console.log(`⏭️ Skipped restricted page (HTTP ${response?.status()}): ${normalizedUrl}`);
       stats.skipped++;
       return '';
     }
@@ -67,7 +93,13 @@ async function extractTOS(url, depth = 0) {
     const currentUrl = page.url();
     if (isLoginRedirect(currentUrl)) {
       console.log(`⏭️ Skipped login-redirect page: ${normalizedUrl}`);
-      await browser.close();
+      stats.skipped++;
+      visitedLinks.add(normalizedUrl);
+      return '';
+    }
+
+    if (!(await isEnglishPage(page))) {
+      console.log(`⏭️ Skipping non-English page: ${normalizedUrl}`);
       stats.skipped++;
       return '';
     }
@@ -78,28 +110,30 @@ async function extractTOS(url, depth = 0) {
     const htmlContent = await page.content();
     const markdown = await parseContentToMarkdown(htmlContent, normalizedUrl);
 
-    const links = await collectRelatedLinks(page);
-    await browser.close();
-
-    if (!markdown.trim()) {
+    if (!isValidTOSContent(markdown)) {
+      console.log(`⚠️ Skipping invalid TOS content at ${normalizedUrl}`);
       stats.skipped++;
+      visitedLinks.add(normalizedUrl);
       return '';
     }
+
+    const links = await collectRelatedLinks(page);
 
     stats.success++;
 
     let nestedMarkdown = '';
     for (const link of links) {
       const absoluteLink = resolveUrl(normalizedUrl, link);
-      nestedMarkdown += await extractTOS(absoluteLink, depth + 1);
+      nestedMarkdown += await extractTOS(absoluteLink, depth + 1, browser);
     }
 
     return markdown + nestedMarkdown;
   } catch (err) {
-    await browser.close();
-    console.log(`❌ Error processing: ${normalizedUrl}`);
+    logError(normalizedUrl, err);
     stats.failed++;
     return '';
+  } finally {
+    if (page && !page.isClosed()) await page.close();
   }
 }
 
@@ -108,31 +142,86 @@ function isLoginRedirect(url) {
   return /checkpoint|login|signin/.test(url);
 }
 
+async function isEnglishPage(page) {
+  const lang = await page.evaluate(() => document.documentElement.lang || '');
+  return /^en(-|$)/i.test(lang);
+}
+
+function isDownloadPage(url) {
+  return (
+    /\.(pdf|docx?|pptx?|xls|zip|rar|gz|tar|7z)(\?|$)/i.test(url) ||
+    /download=|\.aspx|\.ashx|\.do\?|attachment=true/i.test(url)
+  );
+}
+
+function isValidTOSContent(content) {
+  const indicators = [
+    'terms',
+    'service',
+    'agreement',
+    'conditions',
+    'privacy',
+    'policy',
+    'liability',
+    'user agreement',
+    'termination',
+    'rights',
+    'right',
+    'data collection',
+    'personal information',
+    'GDPR',
+    'consent',
+    'data protection',
+    'third-party',
+    'tracking',
+    'opt-out',
+  ];
+
+  const matchedIndicators = indicators.filter((word) => new RegExp(`\\b${word}\\b`, 'i').test(content));
+
+  return matchedIndicators.length >= 1 && content.length > 200;
+}
+
+const logError = (url, err) => {
+  console.error(`❌ Error at ${url}: ${err.message}`);
+  fs.appendFileSync('./logs/error.log', `${new Date().toISOString()} - ${url} - ${err.stack}\n`);
+};
+
+function saveStructuredData(output, url, markdown) {
+  const data = {
+    url,
+    fetchedAt: new Date().toISOString(),
+    contentLength: markdown.length,
+  };
+  fs.writeFileSync(output.replace('.md', '.json'), JSON.stringify(data, null, 2));
+}
+
 async function autoScroll(page) {
   await page.evaluate(async () => {
-    await new Promise((resolve) => {
+    await new Promise((resolve, reject) => {
       let totalHeight = 0;
-      const distance = 500;
+      const distance = 800;
       const timer = setInterval(() => {
         window.scrollBy(0, distance);
         totalHeight += distance;
+
         if (totalHeight >= document.body.scrollHeight) {
           clearInterval(timer);
           resolve();
         }
-      }, 100);
+      }, 300);
     });
   });
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
 async function expandContent(page) {
   await page.evaluate(() => {
-    document.querySelectorAll('[aria-expanded="false"], .accordion, button').forEach((el) => {
-      try {
-        el.click();
-      } catch (_) {}
+    ['button', '[aria-expanded="false"]', '.accordion'].forEach((selector) => {
+      document.querySelectorAll(selector).forEach((el) => el.click());
     });
   });
+  await new Promise((resolve) => setTimeout(resolve, 1500));
 }
 
 async function parseContentToMarkdown(html, url) {
@@ -156,7 +245,9 @@ async function collectRelatedLinks(page) {
       .map((a) => a.href)
       .filter(
         (href) =>
-          href && /terms|service|legal|policy|user-agreement/i.test(href) && !/checkpoint|login|signin/i.test(href)
+          href &&
+          /terms|privacy|service|legal|policy|user-agreement/i.test(href) &&
+          !/checkpoint|login|signin/i.test(href)
       );
   });
 }
@@ -187,14 +278,33 @@ function ensureOutputDirectory(filePath) {
 // ===================== ENTRY =====================
 (async () => {
   const { url, output } = parseArguments();
+  ensureOutputDirectory(output);
+  ensureOutputDirectory('./logs/error.log');
+
   console.log(`📘 Starting TOS extraction from: ${url}`);
 
-  const content = await extractTOS(url);
+  const browser = await puppeteer.launch({
+    headless: 'chrome',
+    args: [
+      '--lang=en-US',
+      '--no-sandbox',
+      '--disable-gpu',
+      '--disable-dev-shm-usage',
+      '--disable-setuid-sandbox',
+      '--single-process',
+    ],
+  });
 
-  if (content.trim()) {
-    ensureOutputDirectory(output);
-    fs.writeFileSync(output, content);
-    console.log(`✅ Terms of Service content saved to: ${output}\n\n`);
+  try {
+    const content = await extractTOS(url, 0, browser);
+
+    if (content.trim()) {
+      fs.writeFileSync(output, content);
+      saveStructuredData(output, url, content);
+      console.log(`✅ Terms of Service content saved to: ${output}\n`);
+    } else {
+      console.log(`⚠️  No Terms of Service content extracted.`);
+    }
 
     console.log(`📊 Crawl Summary:
       Total Pages Visited: ${stats.totalVisited}
@@ -202,7 +312,9 @@ function ensureOutputDirectory(filePath) {
       ⏭️ Skipped: ${stats.skipped}
       ❌ Failed: ${stats.failed}
     `);
-  } else {
-    console.log(`⚠️  No Terms of Service content could be extracted from the provided URL.`);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await browser.close();
   }
 })();
