@@ -36,10 +36,14 @@
   "homepage": "https://github.com/Xinzhang-Chen/tos-crawl#readme",
   "dependencies": {
     "@mozilla/readability": "^0.6.0",
+    "commander": "^13.1.0",
     "jsdom": "^26.0.0",
+    "p-queue": "^6.6.2",
     "puppeteer": "^24.4.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
-    "turndown": "^7.2.0"
+    "puppeteer-real-browser": "^1.4.3",
+    "turndown": "^7.2.0",
+    "unfluff": "^3.2.0"
   }
 }
