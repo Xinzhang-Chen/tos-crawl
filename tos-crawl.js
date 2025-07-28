@@ -70,7 +70,7 @@ program
   .option('--includeArchive', 'include archive/history versions', false)
   .option('--extractor <type>', 'extraction engine: readability or unfluff', 'readability')
   .option('--quiet', 'suppress console output', false)
-  .option('--headless', 'run Puppeteer in headless mode', true)
+  .option('--headless', 'run Puppeteer in headless mode', false)
   .option('--fallbackExtractor', 'fallback to unfluff if readability fails', false);
 program.parse();
 const opt = program.opts();
@@ -676,11 +676,19 @@ function skip(reason) {
 
 // Close the browser and page
 async function closeBrowserAndPage(browser, page) {
-  if (page) {
-    await page.close().catch((e) => console.error('[CLOSE PAGE ERROR]', e.message));
+  try {
+    if (page && !page.isClosed?.()) {
+      await page.close();
+    }
+  } catch (e) {
+    console.error('[CLOSE PAGE ERROR]', e.message);
   }
-  if (browser && browser?.isConnected?.()) {
-    await browser.close().catch((e) => console.error('[CLOSE BROWSER ERROR]', e.message));
+
+  try {
+    if (browser && browser.isConnected?.()) {
+      await browser.close();
+    }
+  } catch (e) {
+    console.error('[CLOSE BROWSER ERROR]', e.message);
   }
-  return Promise.resolve();
 }
